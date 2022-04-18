@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript"src="phaser.min.js"></script>
+        <script type ="text/javascript"src="phaser.min.js"></script>
     </head>
     <body>
-        <script type="text/javascript">
-            var game = new Phaser.Game(800,600,Phaser.AUTO,'',{
+    <script type ="text/javascript">
+            var game = new Phaser.Game(800,600,Phaser.CANVAS,'',{
                 preload : preload, 
                 create: create, 
                 update: update
@@ -13,6 +13,9 @@
     
     var paddle1;
     var paddle2;
+    var ball;
+    var ball_launched;
+    var ball_velocity;
 
     function preload(){
         game.load.image('paddle','assets/paddle.png');
@@ -20,8 +23,14 @@
     }
     
     function create(){
+        ball_launched = false;
+        ball_velocity = 400;
+        
         paddle1 = create_paddle(0,game.world.centerY);
         paddle2 = create_paddle(game.world.width - 16,game.world.centerY); 
+        ball = create_ball(game.world.centerX,game.world.centerY);
+
+        game.input.onDown.add(launch_ball, this);
     }
 
     function update(){
@@ -46,6 +55,29 @@
             paddle.y = game.world.height - paddle.height / 2;
         } 
         
+    }
+
+    function create_ball(x,y){
+        var ball = game.add.sprite(x,y,'ball');
+        ball.anchor.setTo(0.5,0.5);
+        game.physics.arcade.enable(ball);
+        ball.body.collideWorldBounds = true;
+        ball.body.bounce.setTo(1,1);
+
+        return ball;
+    }
+
+    function launch_ball(){
+        if(ball_launched){
+            ball.x = game.world.centerX;
+            ball.y = game.world.centerY;
+            ball.body.velocity.setTo(0,0);
+            ball_laucnhed = false;
+        }else {
+            ball.body.velocity.x = -ball_velocity;
+            ball.body.velocity.y = ball_velocity;
+            ball_launched = true;
+        }
     }
 
     </script>
