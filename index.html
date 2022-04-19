@@ -4,13 +4,14 @@
         <script type ="text/javascript"src="phaser.min.js"></script>
     </head>
     <body>
-    <script type="text/javascript">
-            var game = new Phaser.Game(800,600,Phaser.CANVAS,'',{
+    <script>
+            var game = new Phaser.Game(800,600,Phaser.AUTO,null,{
                 preload: preload, 
                 create: create, 
                 update: update
             });
     
+    var paddle;
     var paddle1;
     var paddle2;
     var ball;
@@ -18,8 +19,8 @@
     var ball_velocity;
 
     function preload(){
-        game.load.image('paddle','assets/paddle.png');
-        game.load.image('ball','assets/ball.png');
+        game.load.image('paddle','assets/images/paddle.png');
+        game.load.image('ball','assets/images/ball.png');
     }
     
     function create(){
@@ -38,7 +39,7 @@
     }
 
     function create_paddle(x,y){
-        var paddle = game.add.sprite(x,y,'paddle');
+        paddle = game.add.sprite(x,y,'paddle');
         paddle.anchor.setTo(0.5,0.5);
         game.physics.arcade.enable(paddle);
         paddle.body.collideWorldBounds = true;
@@ -58,7 +59,7 @@
     }
 
     function create_ball(x,y){
-        var ball = game.add.sprite(x,y,'ball');
+        ball = game.add.sprite(x,y,'ball');
         ball.anchor.setTo(0.5,0.5);
         game.physics.arcade.enable(ball);
         ball.body.collideWorldBounds = true;
@@ -72,7 +73,7 @@
             ball.x = game.world.centerX;
             ball.y = game.world.centerY;
             ball.body.velocity.setTo(0,0);
-            ball_laucnhed = false;
+            ball_launched = false;
         }else {
             ball.body.velocity.x = -ball_velocity;
             ball.body.velocity.y = ball_velocity;
