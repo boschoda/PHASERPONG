@@ -37,7 +37,7 @@ function create_paddle(x,y){
     paddle.anchor.setTo(0.5,0.5);
     game.physics.arcade.enable(paddle);
     paddle.body.collideWorldBounds = true;
-    
+
     return paddle;
 }
 
