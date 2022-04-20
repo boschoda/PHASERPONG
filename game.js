@@ -1,6 +1,6 @@
 var game = new Phaser.Game(800,600,Phaser.AUTO,null,{
-    preload: preload, 
-    create: create, 
+    preload: preload,
+    create: create,
     update: update
 });
 
@@ -12,17 +12,15 @@ var ball_launched;
 var ball_velocity;
 
 function preload(){
-    game.load.image('paddle','assets/images/paddle.png');
-    game.load.image('ball','assets/images/ball.png');
+    game.load.image('paddle','/assets/images/paddle.png');
+    game.load.image('ball','../assets/images/ball.png');
 }
 
 function create(){
-    game.add.image(32,256,'paddle');
-    
     ball_launched = false;
     ball_velocity = 400;
     paddle1 = create_paddle(0,game.world.centerY);
-    paddle2 = create_paddle(game.world.width - 16,game.world.centerY); 
+    paddle2 = create_paddle(game.world.width - 16,game.world.centerY);
     ball = create_ball(game.world.centerX,game.world.centerY);
 
     game.input.onDown.add(launch_ball, this);
@@ -48,7 +46,7 @@ function control_paddle(paddle,y){
         paddle.y = paddle.height / 2;
     } else if (paddle.y > game.world.height - paddle.height / 2){
         paddle.y = game.world.height - paddle.height / 2;
-} 
+}
 }
 
 function create_ball(x,y){
