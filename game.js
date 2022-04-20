@@ -18,7 +18,7 @@ var score2;
 function preload(){
     game.load.image('paddle','/assets/images/paddle.png');
     game.load.image('ball','/assets/images/ball.png');
-    game.load.audio('hit','/assets/hit.ogg');
+    game.load.audio('hit','/assets/audio/hit.ogg');
 }
 
 function create(){
