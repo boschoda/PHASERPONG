@@ -1,3 +1,3 @@
 # PHASERPONG
 Fully functional game
-Used Web Server for Chrome to test
+used Web Server for Chrome to test
