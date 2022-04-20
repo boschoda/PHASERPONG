@@ -13,7 +13,7 @@ var ball_velocity;
 
 function preload(){
     game.load.image('paddle','/assets/images/paddle.png');
-    game.load.image('ball','../assets/images/ball.png');
+    game.load.image('ball','/assets/images/ball.png');
 }
 
 function create(){
@@ -28,6 +28,14 @@ function create(){
 
 function update(){
     control_paddle(paddle1,game.input.y);
+    game.physics.arcade.collide(paddle1,ball);
+    game.physics.arcade.collide(paddle2,ball);
+
+    if(ball.body.blocked.left){
+        console.log('Player 2 scores');
+    } else if(ball.body.blocked.right){
+        console.log('Player 1 scores');
+    }
 }
 
 function create_paddle(x,y){
@@ -35,6 +43,7 @@ function create_paddle(x,y){
     paddle.anchor.setTo(0.5,0.5);
     game.physics.arcade.enable(paddle);
     paddle.body.collideWorldBounds = true;
+    paddle.body.immovable = true;
 
     return paddle;
 }
