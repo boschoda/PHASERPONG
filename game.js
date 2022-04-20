@@ -16,6 +16,7 @@ var score1;
 var score2;
 
 function preload(){
+    game.load.setBaseURL('https://boschoda.github.io/PHASERPONG/');
     game.load.image('paddle','/assets/images/paddle.png');
     game.load.image('ball','/assets/images/ball.png');
     game.load.audio('hit','/assets/audio/hit.ogg');
